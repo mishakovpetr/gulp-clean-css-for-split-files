@@ -104,6 +104,10 @@ module.exports = function(destFile, options) {
       return cb();
     }
 
+	if (firstFile !== file) {
+        buffer.push('/*split*/');
+    }
+    buffer.push('/*splitfilename=' + path.relative('.', file.path) + '*/');
     buffer.push(processedCss);
     cb();
   }, function(cb) {
